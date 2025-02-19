@@ -292,5 +292,59 @@ update orders;
     }
 
 
+
+    @IsTest
+    public static void createTestcalculMontant() {
+        Integer numberOfOrders = 5; // Définition explicite
+
+        // Créer un compte
+        Account acc = new Account(Name = 'Test Account');
+        insert acc;
+
+        // Récupérer l'ID du Pricebook standard
+        Id standardPricebookId = Test.getStandardPricebookId();
+
+        // Créer un produit
+        Product2 product = new Product2(Name = 'Test Product', Family = 'General', IsActive = true);
+        insert product;
+
+        // Créer un PricebookEntry actif pour ce produit
+        PricebookEntry pricebookEntry = new PricebookEntry(
+            Pricebook2Id = standardPricebookId,
+            Product2Id = product.Id,
+            UnitPrice = 500,
+            IsActive = true
+        );
+        insert pricebookEntry;
+
+        // Liste des commandes à insérer
+        List<Order> orders = new List<Order>();
+        for (Integer i = 1; i <= numberOfOrders; i++) {
+            orders.add(new Order(
+                Name = 'Order ' + i,
+                AccountId = acc.Id,
+                Status = 'Draft', // 'Activated' nécessite des OrderItems
+                EffectiveDate = Date.today(),
+                Pricebook2Id = standardPricebookId,
+                ShipmentCost__c = 50 * i // Coût d'expédition dynamique
+            ));
+        }
+        insert orders;
+
+        // Associer des produits aux commandes via OrderItem
+        List<OrderItem> orderItems = new List<OrderItem>();
+        for (Order ord : orders) {
+            orderItems.add(new OrderItem(
+                OrderId = ord.Id,
+                PricebookEntryId = pricebookEntry.Id,
+                Quantity = 2,
+                UnitPrice = 500
+            ));
+        }
+        insert orderItems;
+    }
+    
+
+
 }
 

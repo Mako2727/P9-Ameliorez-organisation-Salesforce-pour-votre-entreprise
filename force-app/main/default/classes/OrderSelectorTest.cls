@@ -54,5 +54,27 @@ for (Id accountId : result.keySet()) {
     }
 
 
+    @IsTest
+    static void testgetAllOrder() {
+   
+    Integer OrdersCount = 0;
+      
+    Test.startTest();
+     Database.QueryLocator result= OrderSelector.getAllOrder();
+     List<Order> Orders = new List<Order>();
+     // Utiliser un QueryLocatorIterator pour récupérer les résultats dans la liste
+     Database.QueryLocatorIterator iterator = result.iterator();
+     while (iterator.hasNext()) {
+        Order Order = (Order)iterator.next();
+        Orders.add(Order);
+        OrdersCount++;
+     }  
+    Test.stopTest();
+  // Vérification que la liste retournée contient bien des résultats
+  System.assert(Orders.size() > 0, 'La liste result doit contenir au moins un trip.');
+    }
+ 
+
+
 
 }
