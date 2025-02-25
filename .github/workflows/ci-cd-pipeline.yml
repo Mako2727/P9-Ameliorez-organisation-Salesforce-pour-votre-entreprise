@@ -14,14 +14,18 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Set up Salesforce CLI
-      uses: amitsingh-007/sfdx-action@v1
-      with:
-        sfdx-cli-version: 'latest'
+      run: |
+        # Installer Salesforce CLI (SFDX)
+        curl -fsSL https://developer.salesforce.com/media/sfdx-cli/debian/apt-key.asc | sudo tee /etc/apt/trusted.gpg.d/sfdx-cli.asc
+        echo "deb https://developer.salesforce.com/media/sfdx-cli/debian/ stable main" | sudo tee /etc/apt/sources.list.d/sfdx-cli.list
+        sudo apt-get update
+        sudo apt-get install -y sfdx-cli
 
     - name: Authenticate to Salesforce
       run: |
-        echo ${{ secrets.SF_USERNAME }} > sfdx-auth-url.txt
-        sfdx force:auth:sfdxurl:store --sfdxurlfile sfdx-auth-url.txt --setdefaultusername
+        # Utiliser l'URL d'authentification Salesforce pour se connecter
+        echo ${{ secrets.SF_AUTH_URL }} > sfdx-auth-url.txt
+        sfdx force:auth:sfdxurl:store --sfdxurlfile sfdx-auth-url.txt --setdefaultusername ${{ secrets.SF_USERNAME }}
 
     - name: Deploy code to Salesforce
       run: |
