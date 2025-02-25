@@ -42,6 +42,14 @@ jobs:
       - name: 'Generate metadata delta pull request'  # Utilisez le plug-in sfdx-git-delta pour effectuer un delta, generer le package xml dans un fichier temporaire ex : .temp
         run:  sfdx-git-delta --from=origin/main --to=HEAD --metadata --targetdir=.temp
 
+
+      - name: Install SFDX CLI and sfdx-git-delta plugin
+        run: |
+          npm install -g @salesforce/cli@latest
+          npm install -g sfdx-git-delta@3.3.0
+          sfdx-git-delta --version  # Vérifier que la commande est bien disponible
+        shell: bash
+
       - name: 'Déployer les métadonnées sur la branch main'
         if: github.ref == 'refs/heads/main'
         run:  sfdx force:source:deploy -p .temp --targetusername ${{ secrets.SF_USERNAME }}
