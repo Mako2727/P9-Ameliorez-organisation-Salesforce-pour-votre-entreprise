@@ -43,11 +43,8 @@ jobs:
         run: npm install -g sfdx-git-delta@3.3.0
         shell: bash
 
-      - name: 'Verify sfdx-git-delta installation'
-        run: |
-          echo "Checking sfdx-git-delta installation..."
-          which sfdx-git-delta || echo "sfdx-git-delta not found!"
-          sfdx-git-delta --version || echo "sfdx-git-delta execution failed!"
+      - name: 'Install sfdx-git-delta globally'
+        run: npm install -g sfdx-git-delta@3.3.0
         shell: bash
 
       - name: 'Generate metadata delta pull request'
