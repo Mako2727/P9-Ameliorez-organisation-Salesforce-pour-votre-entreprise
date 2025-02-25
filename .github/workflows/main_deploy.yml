@@ -39,10 +39,10 @@ jobs:
           sfdx force:auth:sfdxurl:store --sfdxurlfile sfdx-auth-url.txt --setdefaultusername --setalias my-org
         shell: bash
 
-      - name: Install sfdx-git-delta
+      - name: 'Install sfdx-git-delta'
         run: npm install -g sfdx-git-delta@3.3.0
 
-      - name: Generate metadata delta pull request
+      - name: 'Generate metadata delta pull request'
         run: npx sfdx-git-delta --from=origin/main --to=HEAD --metadata --targetdir=.temp
         shell: bash
 
