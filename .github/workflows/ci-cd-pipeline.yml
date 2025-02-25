@@ -17,7 +17,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-     
+      # Installation de Salesforce CLI via apt-get
+      - name: Install Salesforce CLI
+        run: |
+          # Installer les dépendances nécessaires
+          #sudo apt-get update
+          #sudo apt-get install -y curl
+          # Ajouter la clé GPG et le dépôt pour Salesforce CLI
+          curl -fsSL https://developer.salesforce.com/media/salesforce-cli/sfdx-cli-linux-amd64.deb -o sfdx-cli.deb
+          sudo dpkg -i sfdx-cli.deb
+          sudo apt-get install -f
+        shell: bash
 
       # Authentification avec Salesforce
       - name: Authenticate to Salesforce Org
