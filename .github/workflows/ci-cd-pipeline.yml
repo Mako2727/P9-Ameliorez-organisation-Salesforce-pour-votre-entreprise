@@ -17,18 +17,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # Configuration de Salesforce CLI
-      - name: Set up Salesforce CLI
-        uses: salesforcecli/sfdx-action@v1
-        with:
-          version: latest
+      # Installation de Salesforce CLI manuellement
+      - name: Install Salesforce CLI
+        run: |
+          curl https://developer.salesforce.com/media/salesforce-cli/sfdx-cli-linux-amd64.tar.xz | tar xJ
+          sudo ./install.sh
+        shell: bash
 
       # Authentification avec Salesforce
       - name: Authenticate to Salesforce Org
         run: |
           echo $SF_AUTH_URL | sfdx force:auth:sfdxurl:store -f - -d
         env:
-          SF_AUTH_URL: ${{ secrets.SF_AUTH_URL }}  # Tu dois ajouter l'URL d'authentification dans les secrets GitHub
+          SF_AUTH_URL: ${{ secrets.SF_AUTH_URL }}  
 
       # Vérification du code (Linting)
       - name: Run Apex Linter
