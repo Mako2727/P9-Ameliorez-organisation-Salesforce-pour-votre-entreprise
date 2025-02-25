@@ -39,11 +39,18 @@ jobs:
           sfdx force:auth:sfdxurl:store --sfdxurlfile sfdx-auth-url.txt --setdefaultusername --setalias my-org
         shell: bash
 
-      - name: 'Install sfdx-git-delta'
+      - name: Install sfdx-git-delta
         run: npm install -g sfdx-git-delta@3.3.0
-
-      - name: 'Generate metadata delta pull request'
-        run: npx sfdx-git-delta --from=origin/main --to=HEAD --metadata --targetdir=.temp
+        shell: bash
+      
+      - name: Verify sfdx-git-delta installation
+        run: |
+          echo "Checking if sfdx-git-delta is installed..."
+          sfdx-git-delta --version
+        shell: bash
+      
+      - name: Generate metadata delta pull request
+        run: sfdx-git-delta --from=origin/main --to=HEAD --metadata --targetdir=.temp
         shell: bash
 
       - name: 'Install SFDX CLI and sfdx-git-delta plugin'
