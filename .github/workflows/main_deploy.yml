@@ -39,11 +39,11 @@ jobs:
           sfdx force:auth:sfdxurl:store --sfdxurlfile sfdx-auth-url.txt --setdefaultusername --setalias my-org
         shell: bash
 
-      - name: 'Generate metadata delta pull request'  # Utilisez le plug-in sfdx-git-delta pour effectuer un delta, generer le package xml dans un fichier temporaire ex : .temp
-        run:  |
-          sfdx-git-delta --from=origin/main --to=HEAD --metadata --targetdir=.temp
+      - name: 'Generate metadata delta pull request'
+        run: npx sfdx-git-delta --from=origin/main --to=HEAD --metadata --targetdir=.temp
+        shell: bash
 
-      - name: Install SFDX CLI and sfdx-git-delta plugin
+      - name: 'Install SFDX CLI and sfdx-git-delta plugin'
         run: |
           npm install -g @salesforce/cli@latest
           npm install -g sfdx-git-delta@3.3.0
