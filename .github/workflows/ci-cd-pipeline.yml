@@ -17,11 +17,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # Installation de Salesforce CLI manuellement
+      # Installation de Salesforce CLI via apt-get
       - name: Install Salesforce CLI
         run: |
-          curl https://developer.salesforce.com/media/salesforce-cli/sfdx-cli-linux-amd64.tar.xz | tar xJ
-          sudo ./install.sh
+          # Installer les dépendances nécessaires
+          sudo apt-get update
+          sudo apt-get install -y curl
+          # Ajouter la clé GPG et le dépôt pour Salesforce CLI
+          curl -fsSL https://developer.salesforce.com/media/salesforce-cli/sfdx-cli-linux-amd64.deb -o sfdx-cli.deb
+          sudo dpkg -i sfdx-cli.deb
+          sudo apt-get install -f
         shell: bash
 
       # Authentification avec Salesforce
@@ -29,7 +34,7 @@ jobs:
         run: |
           echo $SF_AUTH_URL | sfdx force:auth:sfdxurl:store -f - -d
         env:
-          SF_AUTH_URL: ${{ secrets.SF_AUTH_URL }}  
+          SF_AUTH_URL: ${{ secrets.SF_AUTH_URL }} 
 
       # Vérification du code (Linting)
       - name: Run Apex Linter
