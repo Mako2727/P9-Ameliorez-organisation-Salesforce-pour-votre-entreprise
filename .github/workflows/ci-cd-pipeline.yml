@@ -19,7 +19,7 @@ jobs:
 
       # Configuration de Salesforce CLI
       - name: Set up Salesforce CLI
-        uses: salesforcecli/sfdx-action@v1
+        uses: salesforcecli/sfdx-action@v1 
         with:
           version: latest
 
