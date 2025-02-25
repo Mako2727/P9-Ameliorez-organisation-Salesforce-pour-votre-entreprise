@@ -23,8 +23,9 @@ jobs:
             # Vérifier si curl est installé, sinon l'installer
             which curl || sudo apt-get install -y curl
             # Ajouter la clé GPG et le dépôt pour Salesforce CLI
-            curl -fsSL https://developer.salesforce.com/media/sfdx-cli/debian/apt-key.gpg | sudo apt-key add -
-            sudo apt-add-repository 'deb https://developer.salesforce.com/media/sfdx-cli/debian/ stable main'
+            curl -fsSL https://developer.salesforce.com/media/sfdx-cli/debian/apt-key.asc | sudo tee /etc/apt/trusted.gpg.d/sfdx-cli.asc
+            # Ajouter le dépôt Salesforce CLI
+            echo "deb https://developer.salesforce.com/media/sfdx-cli/debian/ stable main" | sudo tee /etc/apt/sources.list.d/sfdx-cli.list        
             sudo apt-get update
             sudo apt-get install -y sfdx-cli
         shell: bash
