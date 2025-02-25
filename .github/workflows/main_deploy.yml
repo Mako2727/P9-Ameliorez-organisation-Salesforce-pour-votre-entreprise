@@ -40,8 +40,8 @@ jobs:
         shell: bash
 
       - name: 'Generate metadata delta pull request'  # Utilisez le plug-in sfdx-git-delta pour effectuer un delta, generer le package xml dans un fichier temporaire ex : .temp
-        run:  sfdx-git-delta --from=origin/main --to=HEAD --metadata --targetdir=.temp
-
+        run:  |
+          sfdx-git-delta --from=origin/main --to=HEAD --metadata --targetdir=.temp
 
       - name: Install SFDX CLI and sfdx-git-delta plugin
         run: |
