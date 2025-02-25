@@ -20,13 +20,15 @@ jobs:
       # Installation de Salesforce CLI via apt-get
       - name: Install Salesforce CLI
         run: |
-          # Installer les dépendances nécessaires
+          run: |
+            # Vérifier si curl est installé, sinon l'installer
+            which curl || sudo apt-get install -y curl
+            # Ajouter la clé GPG et le dépôt pour Salesforce CLI
+            curl -fsSL https://developer.salesforce.com/media/sfdx-cli/debian/apt-key.gpg | sudo apt-key add -
+            sudo apt-add-repository 'deb https://developer.salesforce.com/media/sfdx-cli/debian/ stable main'
+
           sudo apt-get update
-          sudo apt-get install -y curl
-          # Ajouter la clé GPG et le dépôt pour Salesforce CLI
-          curl -fsSL https://developer.salesforce.com/media/salesforce-cli/sfdx-cli-linux-amd64.deb -o sfdx-cli.deb
-          sudo dpkg -i sfdx-cli.deb
-          sudo apt-get install -f
+          sudo apt-get install -y sfdx-cli
         shell: bash
 
       # Authentification avec Salesforce
