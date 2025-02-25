@@ -34,11 +34,18 @@ jobs:
           echo "y" | npm install sfdx-git-delta@3.3.0 -g
 
       - name: 'Authentification Salesforce' # Vous devez avoir une connexion avec Salesforce pour pouvoir deployer le code à la dernière étape.
-        run:  # A faire
+        run: |
+          echo ${{ secrets.SF_AUTH_URL }} > sfdx-auth-url.txt
+          sfdx force:auth:sfdxurl:store --sfdxurlfile sfdx-auth-url.txt --setdefaultusername ${{ secrets.SF_USERNAME }}
 
       - name: 'Generate metadata delta pull request'  # Utilisez le plug-in sfdx-git-delta pour effectuer un delta, generer le package xml dans un fichier temporaire ex : .temp
-        run:  # A faire
+        run:  sfdx-git-delta --from=origin/main --to=HEAD --metadata --targetdir=.temp
 
       - name: 'Déployer les métadonnées sur la branch main'
         if: github.ref == 'refs/heads/main'
-        run:  # A faire déployer le code venant du fichier package.xml généré précédemment 
+        run:  sfdx force:source:deploy -p .temp --targetusername ${{ secrets.SF_USERNAME }}
+        
+      - name: 'Ouvrir l’org Salesforce'
+        run: |
+          sfdx force:org:open
+        if: github.ref == 'refs/heads/main'
