@@ -1,0 +1,53 @@
+name: Salesforce CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main  # Déclenchement sur push vers la branche principale
+  pull_request:
+    branches:
+      - main  # Déclenchement sur pull request vers la branche principale
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout du code
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Configuration de Salesforce CLI
+      - name: Set up Salesforce CLI
+        run: |
+          curl https://developer.salesforce.com/media/salesforce-cli/sfdx-cli-linux-amd64.tar.xz | tar xJ
+          sudo ./install.sh
+        shell: bash
+
+      # Authentification avec Salesforce
+      - name: Authenticate to Salesforce Org
+        run: |
+          echo $SF_AUTH_URL | sfdx force:auth:sfdxurl:store -f - -d
+        env:
+          SF_AUTH_URL: ${{ secrets.SF_AUTH_URL }}  # Tu dois ajouter l'URL d'authentification dans les secrets GitHub
+
+      # Vérification du code (Linting)
+      - name: Run Apex Linter
+        run: sfdx force:apex:test:run --resultformat human --targetusername ${{ secrets.SF_USERNAME }} --wait 10
+
+      # Exécution des tests unitaires
+      - name: Run Salesforce Tests
+        run: sfdx force:apex:test:run --resultformat human --targetusername ${{ secrets.SF_USERNAME }} --wait 10
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      # Checkout du code
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Déploiement sur un Scratch Org ou Sandbox
+      - name: Deploy to Salesforce Org
+        run: |
+          sfdx force:source:deploy -p force-app -u ${{ secrets.SF_USERNAME }} -w 10
