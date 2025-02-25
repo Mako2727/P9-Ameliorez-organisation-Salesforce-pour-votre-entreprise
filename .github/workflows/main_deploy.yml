@@ -37,7 +37,7 @@ jobs:
         run: |
           echo "${{ secrets.SF_AUTH_URL }}" > sfdx-auth-url.txt
           sfdx force:auth:sfdxurl:store --sfdxurlfile sfdx-auth-url.txt --setdefaultusername --setalias my-org
-          shell: bash
+        shell: bash
 
       - name: 'Generate metadata delta pull request'  # Utilisez le plug-in sfdx-git-delta pour effectuer un delta, generer le package xml dans un fichier temporaire ex : .temp
         run:  sfdx-git-delta --from=origin/main --to=HEAD --metadata --targetdir=.temp
