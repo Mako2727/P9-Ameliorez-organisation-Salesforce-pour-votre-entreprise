@@ -47,6 +47,7 @@ jobs:
       - name: Generate metadata delta pull request
         run: |
             sfdx sgd:source:delta --from=origin/main --to=HEAD --output=.temp
+            ls -l .temp
             cat .temp/package.xml
 
       - name: 'Déployer les métadonnées sur la branch main'
