@@ -40,7 +40,7 @@ jobs:
         shell: bash    
 
       - name: 'Generate metadata delta pull request'
-        run: npx sfdx-git-delta --from=origin/main --to=HEAD --metadata --targetdir=.temp
+        run: sf sgd source delta --from=origin/main --to=HEAD --metadata --targetdir=.temp
         shell: bash
 
       - name: 'Déployer les métadonnées sur la branch main'
