@@ -12,6 +12,7 @@ const mockGetRecord = {
 const mockSumOrders = 100;
 const mockZeroSumOrders = 0;
 
+
 // Mock des appels Apex
 jest.mock('@salesforce/apex/OrdersController.getSumOrdersByAccount', () => ({
     default: jest.fn()
