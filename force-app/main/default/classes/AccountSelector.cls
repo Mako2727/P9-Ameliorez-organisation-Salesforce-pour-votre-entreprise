@@ -9,8 +9,7 @@ public class AccountSelector {
             if (ord.AccountId != null) {
                 accountIds.add(ord.AccountId);
             }
-        }
-    
+        }    
         // Récupérer les comptes associés si des AccountIds existent
         if (!accountIds.isEmpty()) {
             mapAccounts.putAll(new Map<Id, Account>(
