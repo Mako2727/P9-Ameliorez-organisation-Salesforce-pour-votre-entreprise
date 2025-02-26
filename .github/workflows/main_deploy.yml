@@ -47,7 +47,7 @@ jobs:
       - name: Generate metadata delta pull request
         run: |
               # Utilisation de npx pour appeler sfdx-git-delta si installé localement
-              npx sfdx-git-delta --from=origin/main --to=HEAD --metadata --targetdir=.temp
+              sfdx sgd:source:delta --to HEAD --from origin/main --output .temp
               echo "--- package.xml generated with added and modified metadata ---"
               cat .temp/package.xml
 
