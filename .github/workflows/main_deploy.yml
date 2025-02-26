@@ -51,7 +51,7 @@ jobs:
             cat .temp/package/package.xml
 
       - name: 'Déployer les métadonnées sur la branch main'
-        if: github.ref == 'refs/heads/main'
+      
         run: |
             sf project deploy start --source-dir .temp/package/package.xml --target-org ${{ secrets.SF_USERNAME }}
         
