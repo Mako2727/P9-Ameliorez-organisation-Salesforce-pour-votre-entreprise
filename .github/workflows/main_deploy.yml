@@ -39,9 +39,9 @@ jobs:
           sfdx force:auth:sfdxurl:store --sfdxurlfile sfdx-auth-url.txt --setdefaultusername --setalias my-org
         shell: bash    
 
-      - name: 'Generate metadata delta pull request'
-        run: sfdx git:delta --from=origin/main --to=HEAD --metadata --targetdir=.temp
-        shell: bash
+      - name: Generate metadata delta pull request
+        run: |
+              sfdx-git-delta --from=origin/main --to=HEAD --metadata --targetdir=.temp
 
       - name: 'Déployer les métadonnées sur la branch main'
         if: github.ref == 'refs/heads/main'
