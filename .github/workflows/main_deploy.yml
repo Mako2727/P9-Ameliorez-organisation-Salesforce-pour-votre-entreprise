@@ -39,16 +39,17 @@ jobs:
           sfdx force:auth:sfdxurl:store --sfdxurlfile sfdx-auth-url.txt --setdefaultusername --setalias my-org
         shell: bash    
 
-      - name: 'Generate metadata delta pull request'  # Utilisez le plug-in sfdx-git-delta pour effectuer un delta, generer le package xml dans un fichier temporaire ex : .temp
+              # Étape 4: Crée un répertoire temporaire pour stocker le package.xml généré
+      - name: Create temporary directory for package.xml
+        run: mkdir -p .temp
+
+              # Étape 5: Générer le package.xml delta entre la branche actuelle et main
+      - name: Generate metadata delta pull request
         run: |
-                # Crée un répertoire temporaire pour stocker le package.xml généré
-                mkdir -p .temp
-                # Utilise 'npx' pour exécuter sfdx-git-delta dans le répertoire courant
-                npx sfdx-git-delta --from=origin/main --to=HEAD --metadata --targetdir=.temp
-                # Vérifie si le package.xml a été généré correctement
-                echo "--- package.xml generated ---"
-                cat .temp/package.xml
-                shell: bash
+              # Utilisation de npx pour appeler sfdx-git-delta si installé localement
+              npx sfdx-git-delta --from=origin/main --to=HEAD --metadata --targetdir=.temp
+              echo "--- package.xml generated with added and modified metadata ---"
+              cat .temp/package.xml
 
       - name: 'Déployer les métadonnées sur la branch main'
         if: github.ref == 'refs/heads/main'
