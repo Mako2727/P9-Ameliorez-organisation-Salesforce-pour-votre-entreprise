@@ -52,7 +52,8 @@ jobs:
 
       - name: 'Déployer les métadonnées sur la branch main'
         if: github.ref == 'refs/heads/main'
-        run:  sfdx force:source:deploy -p .temp/package --targetusername ${{ secrets.SF_USERNAME }}
+        run: |
+            sfdx force:source:deploy -p .temp/package --targetusername ${{ secrets.SF_USERNAME }}
         
       - name: 'Ouvrir l’org Salesforce'
         run: |
