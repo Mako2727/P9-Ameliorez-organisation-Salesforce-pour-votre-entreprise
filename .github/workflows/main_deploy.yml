@@ -46,8 +46,8 @@ jobs:
               # Étape 5: Générer le package.xml delta entre la branche actuelle et main
       - name: Generate metadata delta pull request
         run: |
-            sf sgd:source:delta --to HEAD --from $(git merge-base HEAD origin/main) --output .temp
-            shell: bash
+            sfdx sgd:source:delta --to "HEAD" --from "HEAD~1" --from $(git merge-base HEAD origin/main) --output .temp
+        shell: bash
 
       - name: 'Déployer les métadonnées sur la branch main'
         if: github.ref == 'refs/heads/main'
