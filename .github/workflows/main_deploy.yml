@@ -41,11 +41,11 @@ jobs:
 
       - name: 'Generate metadata delta pull request'  # Utilisez le plug-in sfdx-git-delta pour effectuer un delta, generer le package xml dans un fichier temporaire ex : .temp
         run: |
-                # Créer le package.xml dans un répertoire temporaire
-                sfdx sgd:source:delta --to "HEAD" --from $(git merge-base HEAD origin/main) --output .temp -i
-                echo "--- package.xml généré dans le répertoire .temp ---"
+               # Utilisation de npx pour appeler sfdx-git-delta si installé localement
+                npx sfdx-git-delta --to "HEAD" --from $(git merge-base HEAD origin/main) --output .temp -i
+                echo "--- package.xml généré dans .temp ---"
                 cat .temp/package.xml
-                shell: bash
+        shell: bash
 
       - name: 'Déployer les métadonnées sur la branch main'
         if: github.ref == 'refs/heads/main'
