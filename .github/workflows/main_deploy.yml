@@ -46,7 +46,7 @@ jobs:
               # Étape 5: Générer le package.xml delta entre la branche actuelle et main
       - name: Generate metadata delta pull request
         run: |
-            sfdx sgd:source:delta --from=origin/main --to=HEAD --output=.temp
+            sfdx sgd:source:delta --to=HEAD --from=HEAD^  --output=.temp
             ls -l .temp
             cat .temp/package/package.xml
 
