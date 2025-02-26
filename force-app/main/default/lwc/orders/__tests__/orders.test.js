@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+
 import Orders from 'c/orders';
 import getSumOrdersByAccount from '@salesforce/apex/OrdersController.getSumOrdersByAccount';
 import { getRecord } from 'lightning/uiRecordApi';
