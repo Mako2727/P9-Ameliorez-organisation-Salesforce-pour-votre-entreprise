@@ -37,7 +37,7 @@ jobs:
         run: |
           echo "${{ secrets.SF_AUTH_URL }}" > sfdx-auth-url.txt
           sfdx force:auth:sfdxurl:store --sfdxurlfile sfdx-auth-url.txt --setdefaultusername --setalias my-org
-        shell: bash    
+           
 
               # Étape 4: Crée un répertoire temporaire pour stocker le package.xml généré
       - name: Create temporary directory for package.xml
