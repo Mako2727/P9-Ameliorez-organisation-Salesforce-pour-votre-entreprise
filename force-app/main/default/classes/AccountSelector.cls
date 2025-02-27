@@ -2,7 +2,7 @@ public class AccountSelector {
 
     public static Map<Id, Account> getAccount(Set<Id> orderIds) {
         Map<Id, Account> mapAccounts = new Map<Id, Account>();    
-        Set<Id> accountIds = new Set<Id>(); // Stocker uniquement les IDs des comptes  
+        Set<Id> accountIds = new Set<Id>(); // Stocker uniquement les IDs des comptes
     
         // Récupérer les AccountId des commandes passées en paramètre
         for (Order ord : [SELECT AccountId FROM Order WHERE Id IN :orderIds and Status='Activated' ]) {
