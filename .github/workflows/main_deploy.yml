@@ -41,19 +41,19 @@ jobs:
 
               # Étape 4: Crée un répertoire temporaire pour stocker le package.xml généré
       - name: Create temporary directory for package.xml
-        run: mkdir -p .temp
+        run: mkdir -p temp
 
               # Étape 5: Générer le package.xml delta entre la branche actuelle et main
       - name: Generate metadata delta pull request
         run: |
-            sfdx sgd:source:delta --to=HEAD --from=HEAD^  --output=.temp
-            ls -l .temp
-            cat .temp/package/package.xml
+            sfdx sgd:source:delta --to=HEAD --from=HEAD^  --output=temp
+            ls -l temp
+            cat temp/package/package.xml
 
       - name: 'Déployer les métadonnées sur la branch main'
         if: github.ref == 'refs/heads/main'
         run: |
-            sf project deploy start --metadata-dir .temp/package  --target-org ${{ secrets.SF_USERNAME }} 
+            sf project deploy start --metadata-dir temp/package  --target-org ${{ secrets.SF_USERNAME }} 
         
       - name: 'Ouvrir l’org Salesforce'
         run: |
