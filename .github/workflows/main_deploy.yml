@@ -53,7 +53,7 @@ jobs:
       - name: 'Déployer les métadonnées sur la branch main'
         if: github.ref == 'refs/heads/main'
         run: |
-            sfdx project deploy start --source-dir .temp/package/package.xml --target-org ${{ secrets.SF_USERNAME }}
+            sf project deploy validate --metadata-dir .temp/package/package.xml --async --target-org ${{ secrets.SF_USERNAME }}
         
       - name: 'Ouvrir l’org Salesforce'
         run: |
