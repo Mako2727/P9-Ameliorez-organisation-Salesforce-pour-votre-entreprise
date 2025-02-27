@@ -53,4 +53,4 @@ jobs:
       - name: 'Déployer les métadonnées sur la branch main'
         if: github.ref == 'refs/heads/main'
         run: |
-            sf project deploy start --manifest .temp/package/package.xml --target-org ${{ secrets.SF_USERNAME }}    
+            sf project deploy start --manifest .temp/package/package.xml --test-level RunLocalTests --target-org ${{ secrets.SF_USERNAME }}    
