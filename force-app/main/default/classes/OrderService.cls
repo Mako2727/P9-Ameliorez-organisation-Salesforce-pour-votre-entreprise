@@ -1,20 +1,15 @@
 public class OrderService {
-
-
     public static void calculMontant(List<Order> orders)
     { 
-
         for (Order newOrder : orders) {
-            try {
-                Decimal totalAmount = (newOrder.TotalAmount != null) ? newOrder.TotalAmount : 0;
-                Decimal shipmentCost = (newOrder.ShipmentCost__c != null) ? newOrder.ShipmentCost__c : 0;
-                newOrder.NetAmount__c = totalAmount - shipmentCost;
-    
+            try {               
+                if (newOrder.Status=='Activated')
+                {
+                      newOrder.NetAmount__c = newOrder.totalAmount - newOrder.ShipmentCost__c;
+                } 
             } catch (Exception e) {
-                newOrder.addError('Erreur lors du calcul du montant net : ' + e.getMessage());
+                newOrder.addError('Erreur lors du calculMontant : ' + e.getMessage());
             }
-        }
-
-        
+        }        
     }
 }

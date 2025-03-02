@@ -1,12 +1,12 @@
 public class OrderSelector {
 
-    public static Map<Id, Decimal> getTotalAmountByAccount(Set<Id> orderIds) {
+    public static Map<Id, Decimal> getTotalAmountByAccount(List<Account> accounts) {
         Map<Id, Decimal> totalAmountByAccount = new Map<Id, Decimal>();
 
         for (AggregateResult result : [
             SELECT AccountId, SUM(TotalAmount) totalAmount 
             FROM Order 
-            WHERE Id IN :orderIds 
+            WHERE AccountId IN :accounts and Status='Activated' 
             GROUP BY AccountId
         ]) {
             Id accountId = (Id) result.get('AccountId');
@@ -19,11 +19,7 @@ public class OrderSelector {
     }
 
 
-    public static Database.QueryLocator getAllOrder()
-    {
-        return Database.getQueryLocator('SELECT Id from Order WITH SECURITY_ENFORCED');
 
-    }
 
 
     public static Decimal getSumTotalAmount(Id orderId)

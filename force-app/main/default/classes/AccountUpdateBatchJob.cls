@@ -2,18 +2,14 @@ global class AccountUpdateBatchJob implements Database.Batchable<SObject>, Sched
 
 
     global Database.QueryLocator start(Database.BatchableContext BC) {
-        // Appel à la méthode selector pour obtenir les trips à venir
-        return OrderSelector.getAllOrder();
+       
+        return AccountSelector.getAccountsWithActivatedOrder();
     }
 
-    global void execute(Database.BatchableContext BC, List<Order> Orders) {
-        Set<Id> orderIds = new Set<Id>();
+    global void execute(Database.BatchableContext BC, List<Account> accounts) {
+       
 
-        for (Order ord : orders) {
-            orderIds.add(ord.Id);
-        }
-
-        AccountService.updateAccountBatch(orderIds);       
+        AccountService.updateAccountBatch(accounts);       
 }
 
 global void finish(Database.BatchableContext BC) {

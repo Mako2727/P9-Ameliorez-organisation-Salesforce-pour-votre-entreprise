@@ -39,11 +39,11 @@ jobs:
           sfdx force:auth:sfdxurl:store --sfdxurlfile sfdx-auth-url.txt --setdefaultusername --setalias my-org
            
 
-              # Étape 4: Crée un répertoire temporaire pour stocker le package.xml généré
+              # Crée un répertoire temporaire pour stocker le package.xml généré
       - name: Create temporary directory for package.xml
         run: mkdir -p .temp
 
-              # Étape 5: Générer le package.xml delta entre la branche actuelle et main
+              #Générer le package.xml delta entre la branche actuelle et main
       - name: Generate metadata delta pull request
         run: |
             sfdx sgd:source:delta --to=HEAD --from=HEAD^  --output=.temp

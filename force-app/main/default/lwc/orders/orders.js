@@ -1,7 +1,5 @@
 import { LightningElement, api,wire } from 'lwc';
 import getSumOrdersByAccount from '@salesforce/apex/OrdersController.getSumOrdersByAccount';
-import { refreshApex } from '@salesforce/apex';
-import { getRecordNotifyChange } from 'lightning/uiRecordApi';
 import { getRecord } from 'lightning/uiRecordApi';
 
 export default class Orders extends LightningElement {

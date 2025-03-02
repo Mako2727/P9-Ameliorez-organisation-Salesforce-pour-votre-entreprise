@@ -35,23 +35,7 @@ private class AccountSelectorTest {
 
 
 
-    @IsTest 
-    static void testgetAllAccount(){
-         
-         // Lancer la méthode getAccount
-         Test.startTest();
-         Map<Id, Account> accountMap = AccountSelector.getAllAccount();
-         Test.stopTest();
  
-         // Vérifications sur le résultat retourné
-         System.assertNotEquals(null, accountMap, 'Le résultat ne doit pas être nul');
-         System.assert(accountMap.size() > 0, 'La Map retournée doit contenir des comptes.');
-         
-         for (Id accId : accountMap.keySet()) {
-             System.assertNotEquals(null, accountMap.get(accId), 'Chaque compte dans la map doit être non nul');
-         }
-    }
-
 
 
 }

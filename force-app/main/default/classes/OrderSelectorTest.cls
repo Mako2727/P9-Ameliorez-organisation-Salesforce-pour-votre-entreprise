@@ -30,15 +30,20 @@ private class OrderSelectorTest {
     @IsTest
     static void testgetTotalAmountByAccount() {
 // Récupérer les IDs des commandes insérées
-List<Order> ordersActivated = [SELECT Id, AccountId FROM Order WHERE Status = 'Activated'];
-Set<Id> orderIds = new Set<Id>();
-for (Order ord : ordersActivated) {
-    orderIds.add(ord.Id);
+List<Order> Orders = [SELECT AccountId FROM Order WHERE  Status='Activated'];
+Set<Id> accountIds = new Set<Id>();
+for (Order o : Orders) {
+    if (o.AccountId != null) { // Vérifier que AccountId n'est pas null
+        accountIds.add(o.AccountId);
+    }
 }
+
+List<Account> Accounts = [SELECT Id FROM Account WHERE id IN:  accountIds];
+
 
 // Test de la méthode qui calcule le total par compte
 Test.startTest();
-Map<Id, Decimal> result = OrderSelector.getTotalAmountByAccount(orderIds);
+Map<Id, Decimal> result = OrderSelector.getTotalAmountByAccount(Accounts);
 Test.stopTest();
 
 // Vérification des résultats
@@ -54,25 +59,7 @@ for (Id accountId : result.keySet()) {
     }
 
 
-    @IsTest
-    static void testgetAllOrder() {
-   
-    Integer OrdersCount = 0;
-      
-    Test.startTest();
-     Database.QueryLocator result= OrderSelector.getAllOrder();
-     List<Order> Orders = new List<Order>();
-     // Utiliser un QueryLocatorIterator pour récupérer les résultats dans la liste
-     Database.QueryLocatorIterator iterator = result.iterator();
-     while (iterator.hasNext()) {
-        Order Order = (Order)iterator.next();
-        Orders.add(Order);
-        OrdersCount++;
-     }  
-    Test.stopTest();
-  // Vérification que la liste retournée contient bien des résultats
-  System.assert(Orders.size() > 0, 'La liste result doit contenir au moins un trip.');
-    }
+
  
 
 

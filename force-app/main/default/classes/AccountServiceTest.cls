@@ -7,21 +7,16 @@ private class AccountServiceTest {
 
 
     @IsTest
-    static void testUpdateAccount() {
+    static void testupdateAccountTrigger() {
 
         // Récupérer les données de test déjà créées par une autre classe
         List<Account> accounts = [SELECT Id, Chiffre_d_affaire__c FROM Account WHERE Name LIKE 'Test Account%'];
-        List<Order> orders = [SELECT Id, AccountId FROM Order WHERE AccountId IN :accounts];
+        List<Order> orders = [SELECT Id, AccountId, Status FROM Order WHERE AccountId IN :accounts];
 
-        // Créer un Set<Id> avec les OrderIds
-        Set<Id> orderIds = new Set<Id>();
-        for (Order ord : orders) {
-            orderIds.add(ord.Id);
-        }
 
         // Test de la méthode updateAccount
         Test.startTest();
-        AccountService.updateAccount(orderIds);
+        AccountService.updateAccountTrigger(orders);
         Test.stopTest();
 
         // Vérifications après l'exécution de la méthode
@@ -38,17 +33,12 @@ private class AccountServiceTest {
     static void testUpdateAccountBatch() {
   // Récupérer les données de test déjà créées par une autre classe
   List<Account> accounts = [SELECT Id, Chiffre_d_affaire__c FROM Account WHERE Name LIKE 'Test Account%'];
-  List<Order> orders = [SELECT Id, AccountId FROM Order WHERE AccountId IN :accounts];
 
-  // Créer un Set<Id> avec les OrderIds
-  Set<Id> orderIds = new Set<Id>();
-  for (Order ord : orders) {
-      orderIds.add(ord.Id);
-  }
+ 
 
   // Test de la méthode updateAccount
   Test.startTest();
-  AccountService.updateAccountBatch(orderIds);
+  AccountService.updateAccountBatch(accounts);
   Test.stopTest();
 
   // Vérifications après l'exécution de la méthode

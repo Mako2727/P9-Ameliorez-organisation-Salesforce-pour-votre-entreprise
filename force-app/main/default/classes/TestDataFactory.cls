@@ -38,7 +38,9 @@ public class TestDataFactory {
                Status = 'Draft', // Création en mode "Draft"
                AccountId = acc.Id,
                EffectiveDate = Date.today(),
-               Pricebook2Id = standardPricebookId
+               Pricebook2Id = standardPricebookId,
+               NetAmount__c=1000,
+               ShipmentCost__c=3.5
            ));
            orderCount++;
        }
@@ -93,7 +95,8 @@ public class TestDataFactory {
         AccountId = acc1.Id,
         Status = 'Draft', 
         EffectiveDate = Date.today(), 
-        Pricebook2Id = standardPricebookId 
+        Pricebook2Id = standardPricebookId ,
+        ShipmentCost__c=3.5
     );
     insert o1;
 
@@ -155,7 +158,9 @@ for (Account acc : accounts) {
             Status = 'Draft',  // Mettre en "Draft"
             AccountId = acc.Id,
             EffectiveDate = Date.today(),
-            Pricebook2Id = standardPricebookId
+            Pricebook2Id = standardPricebookId,
+            NetAmount__c=1000,
+            ShipmentCost__c=3.5
         );
         orders.add(ord);
     }
@@ -211,7 +216,9 @@ Order ord = new Order(
     Status = 'Draft',  // Le statut initial doit être "Draft"
     AccountId = acc.Id,
     EffectiveDate = Date.today(),
-    Pricebook2Id = standardPricebookId
+    Pricebook2Id = standardPricebookId,
+    NetAmount__c=1000,
+    ShipmentCost__c=3.5
 );
 insert ord;
 
@@ -266,7 +273,9 @@ for (Account acc : accounts) {
             Status = 'Draft', // Mettre "Draft" au lieu de "Activated"
             AccountId = acc.Id,
             EffectiveDate = Date.today(),
-            Pricebook2Id = standardPricebookId
+            Pricebook2Id = standardPricebookId,
+            NetAmount__c=1000,
+            ShipmentCost__c=3.5
         );
         orders.add(ord);
     }
@@ -321,12 +330,12 @@ update orders;
         List<Order> orders = new List<Order>();
         for (Integer i = 1; i <= numberOfOrders; i++) {
             orders.add(new Order(
-                Name = 'Order ' + i,
+                Name = 'OrderTestcalculMontant ' + i,
                 AccountId = acc.Id,
                 Status = 'Draft', // 'Activated' nécessite des OrderItems
                 EffectiveDate = Date.today(),
                 Pricebook2Id = standardPricebookId,
-                ShipmentCost__c = 50 * i // Coût d'expédition dynamique
+                ShipmentCost__c = 50 
             ));
         }
         insert orders;
@@ -342,6 +351,11 @@ update orders;
             ));
         }
         insert orderItems;
+        // Mettre à jour le statut des commandes à "Activated"
+for (Order ord : orders) {
+    ord.Status = 'Activated'; // Changer le statut à "Activated"
+}
+update orders;
     }
     
 
