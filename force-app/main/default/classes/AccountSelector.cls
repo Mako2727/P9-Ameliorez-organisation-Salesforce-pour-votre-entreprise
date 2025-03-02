@@ -5,7 +5,7 @@ public class AccountSelector {
         Set<Id> accountIds = new Set<Id>(); // Stocker uniquement les IDs des comptes
     
         // Récupérer les AccountId des commandes passées en paramètre
-        for (Order ord : [SELECT AccountId FROM Order WHERE Id IN :orderIds and Status='Activated' ]) {
+        for (Order ord : [SELECT AccountId FROM Order WHERE Id IN :orderIds and Status='Activated' WITH SECURITY_ENFORCED ]) {
             if (ord.AccountId != null) {
                 accountIds.add(ord.AccountId);
             }
@@ -22,7 +22,7 @@ public class AccountSelector {
 public static Database.QueryLocator getAccountsWithActivatedOrder()
 {
     //probablement rajouter de champs en fonction des erreurs!!!
-  return  Database.getQueryLocator('SELECT Id FROM Account WHERE Id IN (SELECT AccountId FROM Order WHERE Status = \'Activated\')');
+  return  Database.getQueryLocator('SELECT Id FROM Account WHERE Id IN (SELECT AccountId FROM Order WHERE Status = \'Activated\') WITH SECURITY_ENFORCED' );
 
 }
 

@@ -6,15 +6,14 @@ public class OrderSelector {
         for (AggregateResult result : [
             SELECT AccountId, SUM(TotalAmount) totalAmount 
             FROM Order 
-            WHERE AccountId IN :accounts and Status='Activated' 
-            GROUP BY AccountId
+            WHERE AccountId IN :accounts and Status='Activated' WITH SECURITY_ENFORCED
+            GROUP BY AccountId 
         ]) {
             Id accountId = (Id) result.get('AccountId');
             Decimal totalAmount = (Decimal) result.get('totalAmount');
 
             totalAmountByAccount.put(accountId, totalAmount);
         }
-
         return totalAmountByAccount;
     }
 
@@ -27,11 +26,9 @@ public class OrderSelector {
         AggregateResult groupedResults = [
             SELECT SUM(TotalAmount) total 
             FROM Order 
-            WHERE Id = :orderId AND Status = 'Activated' 
-        ];
-        
+            WHERE Id = :orderId AND Status = 'Activated' WITH SECURITY_ENFORCED
+        ];        
         return  (groupedResults.get('total') != null) ? (Decimal) groupedResults.get('total') : 0;
-
     }
 
 }

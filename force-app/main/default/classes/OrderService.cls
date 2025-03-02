@@ -1,7 +1,8 @@
 public class OrderService {
     public static void calculMontant(List<Order> orders)
     { 
-        for (Order newOrder : orders) {
+        if (Order.getSObjectType().getDescribe().isUpdateable()) {
+            for (Order newOrder : orders) {
             try {               
                 if (newOrder.Status=='Activated')
                 {
@@ -10,6 +11,8 @@ public class OrderService {
             } catch (Exception e) {
                 newOrder.addError('Erreur lors du calculMontant : ' + e.getMessage());
             }
-        }        
+        }  
+        }
+             
     }
 }
