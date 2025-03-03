@@ -23,7 +23,7 @@ export default class Orders extends LightningElement {
             .then(result => {
                 // Vérifier si le montant total est valide et supérieur à 0.
                 this.sumOrdersOfCurrentAccount = result;
-                this.isError =false;
+                this.isError = (result <= 0 || result == null);
             })
             .catch(error => {
                 this.isError = true;  // En cas d'erreur d'appel Apex
