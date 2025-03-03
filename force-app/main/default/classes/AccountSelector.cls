@@ -15,15 +15,15 @@ public class AccountSelector {
             mapAccounts.putAll(new Map<Id, Account>(
                 [SELECT Id, Chiffre_d_affaire__c FROM Account WHERE Id IN :accountIds]
             ));
-        }
-    
+        }    
         return mapAccounts;
     }
-public static Database.QueryLocator getAccountsWithActivatedOrder()
-{
-    //probablement rajouter de champs en fonction des erreurs!!!
-  return  Database.getQueryLocator('SELECT Id FROM Account WHERE Id IN (SELECT AccountId FROM Order WHERE Status = \'Activated\') WITH SECURITY_ENFORCED' );
+    
+    public static Database.QueryLocator getAccountsWithActivatedOrder()
+    {
+        //probablement rajouter de champs en fonction des erreurs!!!
+    return  Database.getQueryLocator('SELECT Id FROM Account WHERE Id IN (SELECT AccountId FROM Order WHERE Status = \'Activated\') WITH SECURITY_ENFORCED' );
 
-}
+    }
 
 }

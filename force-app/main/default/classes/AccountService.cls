@@ -1,9 +1,6 @@
 public class AccountService {
 
     public static void updateAccountTrigger(List<Order> orders) {
-       
-
-      
     List<Account> accounts = new List<Account>();
     if (Order.getSObjectType().getDescribe().isUpdateable()) {
               for (Order order : orders) {

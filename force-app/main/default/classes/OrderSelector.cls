@@ -16,11 +16,7 @@ public class OrderSelector {
         }
         return totalAmountByAccount;
     }
-
-
-
-
-
+    
     public static Decimal getSumTotalAmount(Id orderId)
     {
         AggregateResult groupedResults = [
