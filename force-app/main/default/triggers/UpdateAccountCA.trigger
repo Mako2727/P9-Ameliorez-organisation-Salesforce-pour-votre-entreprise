@@ -8,7 +8,7 @@ trigger UpdateAccountCA on Order (after update) {
         //Nouvelle approche
          List<Order> updatedOrders = new List<Order>(Trigger.new);
         AccountService.updateAccountTrigger(updatedOrders);
-        System.debug('Timestamp: ' + System.now() + ' - Debut de l update pour accountId->Chiffre_d_affaire__c');
+        System.debug('Timestamp: ' + System.now() + ' - Fin de l update pour accountId->Chiffre_d_affaire__c');
 
 
 
