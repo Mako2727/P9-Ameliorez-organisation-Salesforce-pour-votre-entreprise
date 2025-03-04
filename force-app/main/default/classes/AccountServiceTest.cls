@@ -32,9 +32,7 @@ private class AccountServiceTest {
     @IsTest
     static void testUpdateAccountBatch() {
   // Récupérer les données de test déjà créées par une autre classe
-  List<Account> accounts = [SELECT Id, Chiffre_d_affaire__c FROM Account WHERE Name LIKE 'Test Account%'];
-
- 
+  List<Account> accounts = [SELECT Id, Chiffre_d_affaire__c FROM Account WHERE Name LIKE 'Test Account%']; 
 
   // Test de la méthode updateAccount
   Test.startTest();
