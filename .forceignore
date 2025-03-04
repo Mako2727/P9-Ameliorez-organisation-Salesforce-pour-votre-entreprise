@@ -15,4 +15,4 @@ package.xml
 **/*.ts
 
 #mocks
-**/__mocks__/**
+/__mocks__/
