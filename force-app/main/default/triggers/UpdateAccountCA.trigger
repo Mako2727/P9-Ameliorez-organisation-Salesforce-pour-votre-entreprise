@@ -4,6 +4,6 @@ trigger UpdateAccountCA on Order (after update) {
          List<Order> updatedOrders = new List<Order>(Trigger.new);
         AccountService.updateAccountTrigger(updatedOrders);
     } catch (Exception e) {
-        System.debug('Erreur UpdateAccountCA', e.getMessage());
+        System.debug('Erreur UpdateAccountCA : ' + e.getMessage());
     }
 }
