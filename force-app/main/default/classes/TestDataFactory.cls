@@ -32,7 +32,7 @@ public class TestDataFactory {
    List<Order> orders = new List<Order>();
    Integer orderCount = 1;
    for (Account acc : accounts) {
-       for (Integer j = 1; j <= 5; j++) {
+       for (Integer j = 1; j <= 80; j++) {
            orders.add(new Order(
                Name = 'Order ' + orderCount,
                Status = 'Draft', // Création en mode "Draft"

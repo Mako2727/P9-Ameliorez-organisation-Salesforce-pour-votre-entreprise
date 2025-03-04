@@ -4,7 +4,6 @@ private class AccountSelectorTest {
     @TestSetup
     static void setup() {
       TestDataFactory.createTestgetAccount();
-      //TestDataFactory.createTestgetAllAccount();
     }
 
     @IsTest 
