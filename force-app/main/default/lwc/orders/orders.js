@@ -30,5 +30,4 @@ export default class Orders extends LightningElement {
                 console.error("Erreur lors du calcul des commandes : ", error);
             });
     }
-
 }
