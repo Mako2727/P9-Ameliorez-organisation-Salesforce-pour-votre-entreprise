@@ -185,7 +185,7 @@ for (Order ord : orders) {
 }
 update orders;
 
-    }
+}
 
 
     @IsTest
