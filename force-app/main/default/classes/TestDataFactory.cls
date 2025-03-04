@@ -152,7 +152,7 @@ insert pricebookEntry;
 // Création de commandes avec le statut "Draft"
 List<Order> orders = new List<Order>();
 for (Account acc : accounts) {
-    for (Integer j = 1; j <= 80; j++) {
+    for (Integer j = 1; j <= 5; j++) {
         Order ord = new Order(
             Name = 'Order ' + j,
             Status = 'Draft',  // Mettre en "Draft"
