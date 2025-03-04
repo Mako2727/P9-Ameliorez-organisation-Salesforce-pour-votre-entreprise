@@ -18,16 +18,7 @@ private class OrderServiceTest {
    
            // Vérification des résultats après exécution de la méthode
            for (Order ord : orders) {
-            System.debug('OrderServiceTest_TotalAmount: ' + ord.TotalAmount);
-            System.debug('OrderServiceTest_ShipmentCost__c: ' + ord.ShipmentCost__c);
-            System.debug('OrderServiceTest_ShipmentCost__c: ' + ord.NetAmount__c);
-            
-               Decimal expectedNetAmount = 
-                   ((ord.TotalAmount != null) ? ord.TotalAmount : 0) - 
-                   ((ord.ShipmentCost__c != null) ? ord.ShipmentCost__c : 0);
-
-                
-               
+                Decimal expectedNetAmount =((ord.TotalAmount != null) ? ord.TotalAmount : 0) - ((ord.ShipmentCost__c != null) ? ord.ShipmentCost__c : 0);
                System.assertEquals(expectedNetAmount, ord.NetAmount__c, 'Erreur dans le calcul du montant net pour la commande ' + ord.Id);
            }
 
