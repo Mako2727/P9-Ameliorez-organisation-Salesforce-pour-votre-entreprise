@@ -304,7 +304,7 @@ update orders;
 
     @IsTest
     public static void createTestcalculMontant() {
-        Integer numberOfOrders = 5; // Définition explicite
+        Integer numberOfOrders = 90; // Définition explicite
 
         // Créer un compte
         Account acc = new Account(Name = 'Test Account');
