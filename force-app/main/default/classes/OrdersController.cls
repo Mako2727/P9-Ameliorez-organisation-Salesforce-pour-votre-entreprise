@@ -5,11 +5,13 @@ public without sharing class OrdersController {
     @AuraEnabled (cacheable=false)
     public static Decimal getSumOrdersByAccount(Id orderId) {
 
-        System.debug('Timestamp: ' + System.now() + ' - Debut de getSumOrdersByAccount');
+        String timeStart = System.now().format('yyyy-MM-dd HH:mm:ss.SSS');
+        System.debug('Timestamp: ' + timeStart + ' - Debut de getSumOrdersByAccount');
         Decimal myValue  ;
-        AggregateResult groupedResults = [SELECT SUM(TotalAmount) total FROM Order];
+        AggregateResult groupedResults = [SELECT SUM(TotalAmount) total FROM Order] ;
         myValue=  (Decimal)groupedResults.get('total');
-        System.debug('Timestamp: ' + System.now() + ' - Fin de getSumOrdersByAccount');  
+        String timeStop = System.now().format('yyyy-MM-dd HH:mm:ss.SSS');
+        System.debug('Timestamp: ' + timeStop + ' - Fin de getSumOrdersByAccount');  
         return myValue;
         /*Decimal TotalAmount=  OrderSelector.getSumTotalAmount(orderId);        
         return  TotalAmount;*/
