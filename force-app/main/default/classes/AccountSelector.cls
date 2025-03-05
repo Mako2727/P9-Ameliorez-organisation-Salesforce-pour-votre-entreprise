@@ -25,10 +25,10 @@ public class AccountSelector {
         /*Set<Id> accountIds = new Set<Id>();
         for (Order ord : [SELECT AccountId FROM Order WHERE Status = 'Activated']) {
             accountIds.add(ord.AccountId);
-        }
-         System.debug('Timestamp: ' + System.now() + ' - Fin de getAccountsWithActivatedOrder');*/
-        return Database.getQueryLocator('SELECT Id FROM Account WHERE Id IN :accountIds WITH SECURITY_ENFORCED' );
+        } return Database.getQueryLocator('SELECT Id FROM Account WHERE Id IN :accountIds WITH SECURITY_ENFORCED' );
+        */
        
+        System.debug('Timestamp: ' + System.now() + ' - Fin de getAccountsWithActivatedOrder');
     return  Database.getQueryLocator('SELECT Id FROM Account WHERE Id IN (SELECT AccountId FROM Order WHERE Status = \'Activated\') WITH SECURITY_ENFORCED' );
 
     }
