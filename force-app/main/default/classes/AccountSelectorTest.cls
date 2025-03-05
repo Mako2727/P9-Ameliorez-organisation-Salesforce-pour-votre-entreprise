@@ -37,10 +37,15 @@ private class AccountSelectorTest {
     static void testgetAccountsWithActivatedOrder(){        
           Test.startTest();
           Database.QueryLocator locatorAccounts = AccountSelector.getAccountsWithActivatedOrder(); 
+
           List<Account> accounts = new List<Account>();
-          for (SObject  acc : locatorAccounts) {
-            accounts.add((Account) acc); 
-          }
+          // Utiliser un QueryLocatorIterator pour récupérer les résultats dans la liste
+          Database.QueryLocatorIterator iterator = locatorAccounts.iterator();
+          while (iterator.hasNext()) {
+            Account acc = (Account)iterator.next();
+            accounts.add(acc);
+          }  
+
           Test.stopTest();
   
           // Vérification que des comptes sont retournés
