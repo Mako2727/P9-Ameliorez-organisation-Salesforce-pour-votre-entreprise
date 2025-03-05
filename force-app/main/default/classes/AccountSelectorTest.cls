@@ -33,6 +33,24 @@ private class AccountSelectorTest {
     }
 
 
+    @IsTest 
+    static void testgetAccountsWithActivatedOrder(){
+        
+          Test.startTest();
+          Database.QueryLocator locatorAccounts = AccountSelector.getAccountsWithActivatedOrder(); 
+          List<Account> accounts = new List<Account>();
+          for (Account acc : locatorAccounts) {
+              accounts.add(acc);
+          }
+          Test.stopTest();
+  
+          // Vérification que des comptes sont retournés
+          System.assert(accounts.size() > 0, 'Aucun compte n\'a été retourné.');
+
+
+    }
+
+
 
  
 

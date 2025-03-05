@@ -35,9 +35,6 @@ public class AccountService {
                 // Gestion d'erreurs lors de la mise à jour
                 System.debug('Erreur lors de la mise à jour des comptes : ' + e.getMessage());
             }
-        }
-        
+        }        
       }
-
-
 }
