@@ -19,16 +19,9 @@ public class OrderSelector {
     
     public static Decimal getSumTotalAmount(Id orderId)
     {
-        List<Order> orders = [SELECT TotalAmount FROM Order WHERE Id = :orderId AND Status = 'Activated' WITH SECURITY_ENFORCED];
-        Decimal totalAmountSum = 0;
-        for (Order o : orders) {
-            totalAmountSum += o.TotalAmount;
-        }
-        return totalAmountSum;
-
-
-        /*AggregateResult groupedResults = [ SELECT SUM(TotalAmount) total FROM Order WHERE Id = :orderId AND Status = 'Activated' WITH SECURITY_ENFORCED ];        
-        return   (Decimal) groupedResults.get('total');*/
+        
+        AggregateResult groupedResults = [ SELECT SUM(TotalAmount) total FROM Order WHERE Id = :orderId AND Status = 'Activated' WITH SECURITY_ENFORCED ];        
+        return   (Decimal) groupedResults.get('total');
     }
 
 }
