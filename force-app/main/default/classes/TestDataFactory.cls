@@ -7,7 +7,7 @@ public class TestDataFactory {
 
    // Créer 5 comptes
    List<Account> accounts = new List<Account>();
-   for (Integer i = 1; i <= 100; i++) {
+   for (Integer i = 1; i <= 30; i++) {
        accounts.add(new Account(Name = 'Test Account ' + i));
    }
    insert accounts;
@@ -32,7 +32,7 @@ public class TestDataFactory {
    List<Order> orders = new List<Order>();
    Integer orderCount = 1;
    for (Account acc : accounts) {
-       for (Integer j = 1; j <= 100; j++) {
+       for (Integer j = 1; j <= 30; j++) {
            orders.add(new Order(
                Name = 'Order ' + orderCount,
                Status = 'Draft', // Création en mode "Draft"
