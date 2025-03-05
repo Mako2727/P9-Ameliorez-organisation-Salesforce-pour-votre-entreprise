@@ -210,7 +210,7 @@ PricebookEntry pricebookEntry = new PricebookEntry(
 );
 insert pricebookEntry;
 
-// Créer une commande avec le statut "Draft"
+   // Créer une commande avec le statut "Draft"
 Order ord = new Order(
     Name = 'Test Order',
     Status = 'Draft',  // Le statut initial doit être "Draft"
