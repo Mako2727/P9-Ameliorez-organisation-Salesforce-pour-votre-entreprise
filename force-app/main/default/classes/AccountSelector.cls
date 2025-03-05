@@ -28,7 +28,7 @@ public class AccountSelector {
         }
         
         return Database.getQueryLocator('SELECT Id FROM Account WHERE Id IN :accountIds WITH SECURITY_ENFORCED' );
-        System.debug('Timestamp: ' + System.now() + ' - Debut de getAccountsWithActivatedOrder');
+        System.debug('Timestamp: ' + System.now() + ' - Fin de getAccountsWithActivatedOrder');
     //return  Database.getQueryLocator('SELECT Id FROM Account WHERE Id IN (SELECT AccountId FROM Order WHERE Status = \'Activated\') WITH SECURITY_ENFORCED' );
 
     }

@@ -39,8 +39,8 @@ private class AccountSelectorTest {
           Test.startTest();
           Database.QueryLocator locatorAccounts = AccountSelector.getAccountsWithActivatedOrder(); 
           List<Account> accounts = new List<Account>();
-          for (Account acc : locatorAccounts) {
-              accounts.add(acc);
+          for (SObject  acc : locatorAccounts) {
+            accounts.add((Account) acc); 
           }
           Test.stopTest();
   
