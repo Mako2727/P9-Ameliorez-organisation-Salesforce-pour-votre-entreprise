@@ -19,8 +19,8 @@ public class OrderSelector {
     
     public static Decimal getSumTotalAmount(Id orderId)
     {
-        Decimal totalAmount = [SELECT SUM(TotalAmount) FROM Order WHERE Id = :orderId AND Status = 'Activated' WITH SECURITY_ENFORCED];
-        return totalAmount;
+        AggregateResult groupedResults = [ SELECT SUM(TotalAmount) total FROM Order WHERE Id = :orderId AND Status = 'Activated' WITH SECURITY_ENFORCED ];        
+        return   (Decimal) groupedResults.get('total');
     }
 
 }
