@@ -22,7 +22,7 @@ public class OrderSelector {
         AggregateResult groupedResults = [
             SELECT SUM(TotalAmount) total 
             FROM Order 
-            WHERE Id = :orderId AND Status = 'Activated' WITH SECURITY_ENFORCED
+            WHERE Id = :orderId AND Status = 'Activated' 
         ];        
         return  (groupedResults.get('total') != null) ? (Decimal) groupedResults.get('total') : 0;
     }
