@@ -34,8 +34,7 @@ private class AccountSelectorTest {
 
 
     @IsTest 
-    static void testgetAccountsWithActivatedOrder(){
-        
+    static void testgetAccountsWithActivatedOrder(){        
           Test.startTest();
           Database.QueryLocator locatorAccounts = AccountSelector.getAccountsWithActivatedOrder(); 
           List<Account> accounts = new List<Account>();
