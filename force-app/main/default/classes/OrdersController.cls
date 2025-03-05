@@ -9,7 +9,7 @@ public without sharing class OrdersController {
         Decimal myValue  ;
         AggregateResult groupedResults = [SELECT SUM(TotalAmount) total FROM Order];
         myValue=  (Decimal)groupedResults.get('total');
-        System.debug('Timestamp: ' + System.now() + ' - Debut de getSumOrdersByAccount');  
+        System.debug('Timestamp: ' + System.now() + ' - Fin de getSumOrdersByAccount');  
         return myValue;
         /*Decimal TotalAmount=  OrderSelector.getSumTotalAmount(orderId);        
         return  TotalAmount;*/
