@@ -53,6 +53,6 @@ jobs:
       - name: 'Déployer les métadonnées sur la branch main'
         if: github.ref == 'refs/heads/main'
         run: |
-            sf project deploy start --manifest .temp/package/package.xml --target-org ${{ secrets.SF_USERNAME }} --test-level RunLocalTests   SF_CI_HEARTBEAT_FREQUENCY_MS=600000
+            sf project deploy start --manifest .temp/package/package.xml --target-org ${{ secrets.SF_USERNAME }} --test-level "RunLocalTests SF_CI_HEARTBEAT_FREQUENCY_MS=600000"
             
 
