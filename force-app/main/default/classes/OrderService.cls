@@ -1,7 +1,7 @@
 public class OrderService {
     public static void calculMontant(List<Order> orders)
     {  
-       
+        
         if (Order.getSObjectType().getDescribe().isUpdateable()) {
             for (Order newOrder : orders) {
                 try {
