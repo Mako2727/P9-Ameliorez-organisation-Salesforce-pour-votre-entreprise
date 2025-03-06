@@ -17,7 +17,7 @@ public class OrderSelector {
         return totalAmountByAccount;
     }
     
-    public static Decimal getSumTotalAmount(Id orderId)
+    public static Decimal getSumTotalAmount(Id accountId)
     {
         
         AggregateResult groupedResults = [ SELECT SUM(TotalAmount) total FROM Order WHERE AccountId = :accountId AND Status = 'Activated' WITH SECURITY_ENFORCED ];        
