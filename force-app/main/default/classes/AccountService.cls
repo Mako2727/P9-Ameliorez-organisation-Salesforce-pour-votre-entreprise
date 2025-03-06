@@ -26,7 +26,7 @@ public class AccountService {
             Map<Id, Decimal> totalAmountByAccount = OrderSelector.getTotalAmountByAccount(accounts);
         
             // Mise à jour du chiffre d'affaires des comptes
-            for (Id accountId : totalAmountByAccount.keySet()) {
+            for (Id accountId : totalAmountByAccount.keySet()) { 
                 accountsToUpdate.add(new Account(Id=accountId,Chiffre_d_affaire__c=totalAmountByAccount.get(accountId)));
             }   
             try {  
