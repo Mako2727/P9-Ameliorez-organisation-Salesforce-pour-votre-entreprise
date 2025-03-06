@@ -19,7 +19,7 @@ export default class Orders extends LightningElement {
     }
 
    fetchSumOrders() {
-        getSumOrdersByAccount({ orderId: this.recordId })
+        getSumOrdersByAccount({ accountId: this.recordId })
             .then(result => {
                 // Vérifier si le montant total est valide et supérieur à 0.
                 this.sumOrdersOfCurrentAccount = result;
