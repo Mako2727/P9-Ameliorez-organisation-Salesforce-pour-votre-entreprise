@@ -1,4 +1,4 @@
-trigger UpdateAccountCA on Order (after update) {
+trigger UpdateCA on Order (after update) {
     try {
       // Récupération des Order mis à jour         
          List<Order> updatedOrders = new List<Order>(Trigger.new);

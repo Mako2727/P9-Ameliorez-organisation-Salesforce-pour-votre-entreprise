@@ -4,7 +4,7 @@ public without sharing class OrdersController {
     // mais nous souhaitons retourner le montant TOTAL des orders  aux status = 'Activated' du compte sur lequel le composant LWC se situe
     @AuraEnabled (cacheable=false)
     public static Decimal getSumOrdersByAccount(Id accountId) {
-        Decimal TotalAmount=  OrderSelector.getSumTotalAmount(accountId);    
+        Decimal TotalAmount=  OrderSelector.getSumTotalAmount(accountId);  
         return  TotalAmount;
     }
 

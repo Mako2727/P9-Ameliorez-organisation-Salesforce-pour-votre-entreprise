@@ -10,12 +10,11 @@ private class OrdersControllerTest {
     @IsTest
     static void testgetSumOrdersByAccount() {
 
-          // Récupérer l'ID de la commande
-          Order testOrder = [SELECT Id FROM Order WHERE Status = 'Activated' LIMIT 1];
+        Account testAccount = [SELECT Id FROM Account WHERE Name='Test Account' LIMIT 1];
         
           // Test de la méthode getSumTotalAmount
           Test.startTest();
-          Decimal totalAmount = OrdersController.getSumOrdersByAccount(testOrder.Id);
+          Decimal totalAmount = OrdersController.getSumOrdersByAccount(testAccount.Id);
           Test.stopTest();
           
           // Vérification que le montant total est correct
