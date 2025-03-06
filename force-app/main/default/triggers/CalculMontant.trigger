@@ -1,4 +1,4 @@
-trigger CalculMontant on Order (before update) { 
+trigger CalculMontant on Order (before update) {  
 	try {
 			OrderService.calculMontant(Trigger.new);       
 		} catch (Exception e) {
