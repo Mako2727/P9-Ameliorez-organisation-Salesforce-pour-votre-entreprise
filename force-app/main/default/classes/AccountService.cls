@@ -29,7 +29,7 @@ public class AccountService {
             for (Id accountId : totalAmountByAccount.keySet()) {
                 accountsToUpdate.add(new Account(Id=accountId,Chiffre_d_affaire__c=totalAmountByAccount.get(accountId)));
             }   
-            try { 
+            try {
                     update accountsToUpdate;
             } catch (DmlException e) {
                 // Gestion d'erreurs lors de la mise à jour
