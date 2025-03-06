@@ -50,12 +50,9 @@ jobs:
             ls -l .temp
             cat .temp/package/package.xml
 
-            - name: Déployer les métadonnées sur la branche main
-            if: github.ref == 'refs/heads/main'
-            shell: bash
-            env:
-              SFDX_DISABLE_DNS_CHECK: true
-            run: |
-            sf project deploy start --manifest .temp/package/package.xml --target-org ${{ secrets.SF_USERNAME }} --test-level RunLocalTests   
+      - name: 'Déployer les métadonnées sur la branch main'
+        if: github.ref == 'refs/heads/main'
+        run: |
+            sf project deploy start --manifest .temp/package/package.xml --target-org ${{ secrets.SF_USERNAME }} --test-level RunLocalTests   SF_CI_HEARTBEAT_FREQUENCY_MS=600000
             
 
