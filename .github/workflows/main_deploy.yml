@@ -30,7 +30,7 @@ jobs:
 
       - name: Install SFDX CLI and sfdx-git-delta plugin # Ce package va vous permettre de faire un delta entre votre branche et la branch ciblé. Voici la documentation : https://github.com/scolladon/sfdx-git-delta
         run: |
-              npm install -g @salesforce/cli@2.39.6
+              npm install -g @salesforce/cli@latest
               echo "y" | sfdx plugins:install sfdx-git-delta
 
       - name: 'Authentification Salesforce'  # Vous devez avoir une connexion avec Salesforce pour pouvoir deployer le code à la dernière étape.
@@ -53,6 +53,6 @@ jobs:
       - name: 'Déployer les métadonnées sur la branch main'
         if: github.ref == 'refs/heads/main'
         run: |
-            sf project deploy start --manifest .temp/package/package.xml --target-org ${{ secrets.SF_USERNAME }} --test-level RunLocalTests 
+            sf project deploy start --manifest .temp/package/package.xml --test-level RunLocalTests --wait 60 --target-org ${{ secrets.SF_USERNAME }} 
             
 
