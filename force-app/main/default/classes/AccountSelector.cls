@@ -24,4 +24,7 @@ public class AccountSelector {
         return  Database.getQueryLocator('SELECT Id FROM Account WHERE Id IN (SELECT AccountId FROM Order WHERE Status = \'Activated\') WITH SECURITY_ENFORCED' );
     }
 
+
+    
+
 }

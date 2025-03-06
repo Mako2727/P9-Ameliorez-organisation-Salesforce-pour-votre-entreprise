@@ -128,7 +128,7 @@ public class TestDataFactory {
     public static void createTestUpdateAccount() {
       // Création de comptes de test
 List<Account> accounts = new List<Account>();
-for (Integer i = 1; i <= 5; i++) {
+for (Integer i = 1; i <= 3; i++) {
     accounts.add(new Account(
         Name = 'Test Account ' + i,
         Chiffre_d_affaire__c = 0 // Valeur initiale du Chiffre d'affaire
@@ -152,7 +152,7 @@ insert pricebookEntry;
 // Création de commandes avec le statut "Draft"
 List<Order> orders = new List<Order>();
 for (Account acc : accounts) {
-    for (Integer j = 1; j <= 5; j++) {
+    for (Integer j = 1; j <= 3; j++) {
         Order ord = new Order(
             Name = 'Order ' + j,
             Status = 'Draft',  // Mettre en "Draft"
