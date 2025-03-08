@@ -9,9 +9,7 @@ module.exports = {
   ],
   moduleNameMapper: {
     '^@salesforce/apex/(.*)$': '<rootDir>/force-app/main/default/lwc/__mocks__/$1',
-   // '^lightning/uiRecordApi$': '<rootDir>/force-app/main/default/lwc/__mocks__/lightning/uiRecordApi.js',
-   '^c/(.*)$': '<rootDir>/force-app/main/default/lwc/orders/$1',
+   '^c/(.*)$': '<rootDir>/force-app/main/default/lwc/displaySumActivatedOrders/$1',
     '^lwc/(.*)$': '<rootDir>/force-app/main/default/lwc/$1',
-    //  '^lightning/(.*)$': '<rootDir>/node_modules/lightning'
 }
 };
