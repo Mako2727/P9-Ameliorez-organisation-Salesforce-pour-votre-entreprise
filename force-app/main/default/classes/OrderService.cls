@@ -12,7 +12,7 @@ public with sharing class OrderService {
         }
         update ordersToUpdate;
         } catch (Exception e) {
-              newOrder.addError('Erreur lors du calculMontant : ' + e.getMessage());
+              System.debug('Erreur lors du calculMontant : ' + e.getMessage());
         }
     }
   }
