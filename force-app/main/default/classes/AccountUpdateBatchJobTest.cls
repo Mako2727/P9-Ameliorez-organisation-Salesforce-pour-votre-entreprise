@@ -25,7 +25,7 @@ private class AccountUpdateBatchJobTest {
     ];
 
     // Récupération du total des montants par compte via OrderSelector
-       Map<Id, Decimal> totalAmountByAccount = OrderSelector.getTotalAmountByAccount(accounts);      
+       Map<Id, Decimal> totalAmountByAccount = OrderSelector.getTotalAmountByAccount(accounts);       
     
     // Vérification que le Chiffre d'affaire a bien été mis à jour
     for (Account acc : updatedAccounts) {
