@@ -33,4 +33,4 @@ private class AccountUpdateBatchJobTest {
       System.assertEquals(expectedChiffre_d_affaire,acc.Chiffre_d_affaire__c,'Le montant du chiffre d affaire n est pas correct' );
     }
   }
-}
+} 

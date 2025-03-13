@@ -67,12 +67,7 @@ private class OrderSelectorTest {
     // Vérification du montant pour chaque compte
     for (Id accountId : result.keySet()) {
       Decimal totalAmount = result.get(accountId);
-      System.assert(
-        totalAmount > 0,
-        'Le montant total pour le compte ' +
-          accountId +
-          ' doit être supérieur à 0'
-      );
+      System.assertEquals(totalAmount,acc.Chiffre_d_affaire__c,'Le montant du chiffre d affaire n est pas correct' );
     }
   }
 }
