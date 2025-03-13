@@ -24,12 +24,13 @@ private class AccountUpdateBatchJobTest {
       WHERE Id IN :accounts
     ];
 
+    // Récupération du total des montants par compte via OrderSelector
+       Map<Id, Decimal> totalAmountByAccount = OrderSelector.getTotalAmountByAccount(accounts);      
+    
     // Vérification que le Chiffre d'affaire a bien été mis à jour
     for (Account acc : updatedAccounts) {
-      System.assert(
-        acc.Chiffre_d_affaire__c > 0,
-        'Le chiffre d\'affaire du compte devrait être mis à jour'
-      );
+      Decimal expectedChiffre_d_affaire= totalAmountByAccount.get(acc.Id);
+      System.assertEquals(expectedChiffre_d_affaire,acc.Chiffre_d_affaire__c,'Le montant du chiffre d affaire n est pas correct' );
     }
   }
 }
