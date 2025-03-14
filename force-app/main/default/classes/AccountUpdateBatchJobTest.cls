@@ -30,7 +30,7 @@ private class AccountUpdateBatchJobTest {
     // Vérification que le Chiffre d'affaire a bien été mis à jour
     for (Account acc : updatedAccounts) {
       Decimal expectedChiffre_d_affaire= totalAmountByAccount.get(acc.Id);
-      System.assertEquals(expectedChiffre_d_affaire,acc.Chiffre_d_affaire__c,'Le montant du chiffre d affaire n est pas correct' );
+      System.assertEquals(expectedChiffre_d_affaire,acc.Chiffre_d_affaire__c,'Le montant du chiffre d affaire n est pas correct' ); 
     }
   }
 } 
