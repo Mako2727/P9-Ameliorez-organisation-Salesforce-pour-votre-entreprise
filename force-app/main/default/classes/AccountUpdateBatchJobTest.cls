@@ -15,7 +15,7 @@ private class AccountUpdateBatchJobTest {
     List<Account> accounts = [
       SELECT Id, Chiffre_d_affaire__c
       FROM Account
-      WHERE Name LIKE 'Test Account%'
+      WHERE Name = 'Test Account '
     ];
     // Vérifications après l'exécution de la méthode
     List<Account> updatedAccounts = [
