@@ -17,18 +17,13 @@ private class AccountUpdateBatchJobTest {
       FROM Account
       WHERE Name = 'Test Account '
     ];
-    // Vérifications après l'exécution de la méthode
-    List<Account> updatedAccounts = [
-      SELECT Id, Chiffre_d_affaire__c
-      FROM Account
-      WHERE Id IN :accounts
-    ];
+    
 
     // Récupération du total des montants par compte via OrderSelector
        Map<Id, Decimal> totalAmountByAccount = OrderSelector.getTotalAmountByAccount(accounts);       
     
     // Vérification que le Chiffre d'affaire a bien été mis à jour
-    for (Account acc : updatedAccounts) {
+    for (Account acc : accounts) {
       Decimal expectedChiffre_d_affaire= totalAmountByAccount.get(acc.Id);
       System.assertEquals(expectedChiffre_d_affaire,acc.Chiffre_d_affaire__c,'Le montant du chiffre d affaire n est pas correct' ); 
     }
